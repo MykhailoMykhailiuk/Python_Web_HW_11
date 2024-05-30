@@ -24,4 +24,23 @@ class Contact(ContactBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+
+class UserBase(BaseModel):
+    username: str
+
+
+class CreateUser(UserBase):
+    password: str
+
+
+class User(UserBase):
+    id: int
+    contacts: list[Contact] = []
+
+    class Config:
+        from_attributes = True
+
+
+
